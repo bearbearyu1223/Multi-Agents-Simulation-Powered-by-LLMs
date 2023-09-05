@@ -23,11 +23,25 @@ if __name__=="__main__":
                        will diretcly complete the tasks in a few converstations. 
                        """,
                        global_prompt=environment_description)
+
+    # Define the role of the Moderator
+    moderator = Player(name="Ella", backend=OpenAIBackend(), 
+                       role_desc="""
+                       You are Ella, the moderator. Your goal is to evaluate if the converstations betweend Nancy and Nove can end.
+                       Use the following criterion to decide if the converstation can end:
+
+                       1. If Nova has fulfill all the requests Crystal and Crystal is happy with what Nova has accomplished, then converstation can end. 
+                       2. If Nova cannot help fulfill the requests from Crystal, the converstation can end. 
+
+                       If you consider the converstation can end, just say "<<<<<<END_OF_CONVERSATION>>>>>>", otherwise, say "converstation can continue"; do not say 
+                       anything else. 
+                       """,
+                       global_prompt=environment_description)
     
     
     # Instantiate the Conversation Simulation Environment 
-    env = Conversation(player_names=[p.name for p in [user, assistant]])
-    sim = Sim(players=[user, assistant], environment=env, global_prompt=environment_description)
-    sim.launch_cli(interactive=True, max_steps=10)
+    env = Conversation(player_names=[p.name for p in [user, assistant, moderator]])
+    sim = Sim(players=[user, assistant, moderator], environment=env, global_prompt=environment_description)
+    sim.launch_cli(interactive=True, max_steps=20)
 
 

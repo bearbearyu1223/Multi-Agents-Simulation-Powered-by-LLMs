@@ -2,6 +2,7 @@ from agent import SIGNAL_END_OF_CONVERSATION
 from dataclasses import dataclass
 from typing import List, Dict
 from message import MessagePool, Message
+import time
 
 @dataclass
 class TimeStep: 
@@ -69,7 +70,7 @@ class Conversation:
             player_name: the name of the player that takes the action
             action: the action that the agents wants to take
         """
-        message = Message(agent_name=player_name, content=action, turn=self._current_turn)
+        message = Message(agent_name=player_name, content=action, timestamp=time.time_ns(), turn=self._current_turn)
         self.message_pool.append_message(message)
 
         # Update the counters of the player idx

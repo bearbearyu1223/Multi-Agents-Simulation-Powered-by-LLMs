@@ -4,9 +4,8 @@ from message import Message
 from backends.openai_backend import OpenAIBackend
 from tenacity import RetryError
 import logging
-import uuid
 
-SIGNAL_END_OF_CONVERSATION = "<<<<<<END_OF_CONVERSATION>>>>>>{}.format(uuid.uuid4())"
+SIGNAL_END_OF_CONVERSATION = "<<<<<<END_OF_CONVERSATION>>>>>>"
 
 class Agent:
     def __init__(self, name:str, role_desc:str, global_prompt:str=None):

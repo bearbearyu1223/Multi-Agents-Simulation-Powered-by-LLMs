@@ -87,7 +87,7 @@ class SimCLI:
                     pass
                 elif command == "save" or command == "s":
                     # Prompt to get the file path
-                    file_path = prompt([('class:command', "save file path > ")],
+                    file_path = prompt([('class:command', "input a file path to save the conversation history json file > ")],
                                        style=Style.from_dict({'command': 'blue'}))
                     file_path = file_path.strip()
                     # Save the history to file
@@ -108,7 +108,14 @@ class SimCLI:
                 msg.logged = True
 
             step += 1
-            if max_steps is not None and step >= max_steps:
+            if (max_steps is not None and step >= max_steps) or timestep.terminal:
+                file_path = prompt([('class:command', "input a file path to save the conversation history json file > ")],
+                                       style=Style.from_dict({'command': 'blue'}))
+                file_path = file_path.strip()
+                # Save the history to file
+                self.sim.save_history(file_path)
+                # Print the save success message
+                console.print(f"History saved to {file_path}", style="bold green")
                 break
 
         console.print("\n========= Simulation Ended! ==========\n", style="bold green")

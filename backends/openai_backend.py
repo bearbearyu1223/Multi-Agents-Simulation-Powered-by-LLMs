@@ -6,8 +6,8 @@ from typing import List
 import re
 
 # Default config follows the OpenAI playground
-DEFAULT_TEMPERATURE = 0.7
-DEFAULT_MAX_TOKENS = 256
+DEFAULT_TEMPERATURE = 0.1
+DEFAULT_MAX_TOKENS = 256 * 5
 DEFAULT_MODEL = "gpt-3.5-turbo"
 
 END_OF_MESSAGE = "<EOS>"  # End of message token specified by us not OpenAI
@@ -77,6 +77,8 @@ class OpenAIBackend:
             if i == 0:
                 assert msg[0] == SYSTEM_NAME  # The first message should be from the system
                 messages.append({"role": "system", "content": msg[1]})
+            elif "Now you speak".lower() in str(msg[1]).lower() and END_OF_MESSAGE.lower() in str(msg[1]).lower():
+                messages.append({"role": "system", "content": msg[1]})
             else:
                 if msg[0] == agent_name:
                     messages.append({"role": "assistant", "content": msg[1]})
@@ -87,7 +89,6 @@ class OpenAIBackend:
                         # Merge the assistant messages
                         messages[-1]["content"] = f"{messages[-1]['content']}\n{msg[1]}"
                     elif messages[-1]["role"] == "system":
-                        # TODO: I am not sure if the logic is correct here 
                         messages.append({"role": "user", "content": f"[{msg[0]}]: {msg[1]}"})
                     else:
                         raise ValueError(f"Invalid role: {messages[-1]['role']}")
