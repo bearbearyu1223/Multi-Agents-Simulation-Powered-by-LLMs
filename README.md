@@ -1,7 +1,7 @@
 # Conversation Simulation Powered by LLM Agents
 
 ## TL;DR
- This sample project is a demonstration of a simple conversational simulation environment, powered by LLM agents. It takes inspiration from [ChatArena](https://github.com/chatarena/chatarena). The main objective here is to enable task-oriented conversation simulations through LLM agents. To accomplish this, the frameworks and concepts originally developed in ChatArena has been leveraged and tailored specifically for this conversational simulation experiment.
+ This sample project is a demonstration of a simple conversational simulation environment, powered by LLM agents. It takes inspiration from [ChatArena](https://github.com/chatarena/chatarena). The main objective here is to enable conversation simulations through LLM agents (e.g., can be task-oriented). To accomplish this, the frameworks and concepts originally developed in ChatArena has been leveraged and tailored specifically for this conversational simulation experiment.
 
 ## Set Up Local Virtual Environment
 * Step 1: Install Miniconda on MacOS, see instruction [here](https://docs.conda.io/en/latest/miniconda.html). 
@@ -22,19 +22,21 @@ conda deactivate
 `OPENAI_API_KEY` will be needed when calling the OpenAI API endpoints (DEFAULT_MODEL used in this project is "gpt-3.5-turbo"), so do recommend exporting `OPENAI_API_KEY` as an enviroment variable on your local dev machine. 
 
 ## Run the Simulation 
-You can play with any examples under the `examples` folder via:
+You can play with any examples under the `examples` folder and run the converstation simulation in an interactive mode:
 ```
 python examples/example_food_qna_zh_CN.py 
 ```
-to run the converstation simulation in an interactive mode.
 
 In this example, "Crystal" is utilizing an AI assistant named "Nova" to brainstorm ideas for a fast and nutritious school lunch for her daughter. "Ella" serves as a "moderator" responsible for evaluating whether the conversations between Nancy and Nova adhere to the following rules for termination:
 
-The conversation can conclude if Nova successfully fulfills all of Crystal's requests, and Crystal expresses satisfaction with Nova's assistance.
-The conversation can also end if Nova is unable to fulfill Crystal's requests.
+* The conversation can conclude if Nova successfully fulfills all of Crystal's requests, and Crystal expresses satisfaction with Nova's assistance.
+* The conversation can also end if Nova is unable to fulfill Crystal's requests.
+
+If Ella believes the conversation should conclude, she will state "<<<<<<END_OF_CONVERSATION>>>>>>"; otherwise, she will say "converstation can continue". 
+
 Please refer to the screenshot below for an illustration of the simulation results.![example_1](assets/Screenshot%202023-09-07%20at%208.41.32%20PM.png)
 
-Once simulation ends, you can save the converstation history as a json file. See a sample json file below:
+Once simulation ends, one can save the converstation history as a json file. See a sample json file below:
 ```json
 [
     {
@@ -113,5 +115,5 @@ Once simulation ends, you can save the converstation history as a json file. See
 
 ```
 
-Feel free to create a new example and try it out! Have fun ㋡ ~
+Feel free to create a new example and try to experiment with it further! Have fun ㋡ ~
 
