@@ -1,3 +1,6 @@
+import sys
+sys.path.append( '.' )
+
 from agent import Player
 from backends.openai_backend import OpenAIBackend
 from environments.conversation import Conversation

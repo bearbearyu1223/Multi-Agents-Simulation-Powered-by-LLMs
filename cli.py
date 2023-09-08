@@ -15,9 +15,22 @@ ASCII_ART = r"""
    ____                                    _   _               ____  _           
   / ___|___  _ ____   _____ _ __ ___  __ _| |_(_) ___  _ __   / ___|(_)_ __ ___  
  | |   / _ \| '_ \ \ / / _ \ '__/ __|/ _` | __| |/ _ \| '_ \  \___ \| | '_ ` _ \ 
- | |__| (_) | | | \ V /  __/ |  \__ \ (_| | |_| | (_) | | | |  ___) | | | | | | |
+ | |__| (_) | | | \ V /  __/ |  \__ \ (_| | |_| | (_) | | | |  ___) | | | | | | | 
   \____\___/|_| |_|\_/ \___|_|  |___/\__,_|\__|_|\___/|_| |_| |____/|_|_| |_| |_|
                                                                                  
+                      (####)
+                    (#######)
+   __&__          (#########)
+  /     \        (#########)   |\/\/\/|     /\ /\  /\               /\
+ |       |      (#########)    |      |     | V  \/  \---.    .----/  \----.
+ |  (o)(o)       (o)(o)(##)    |      |      \_        /       \          /
+ C   .---_)    ,_C     (##)    | (o)(o)       (o)(o)  <__.   .--\ (o)(o) /__.
+  | |.___|    /___,   (##)     C      _)     _C         /     \     ()     /
+  |  \__/       \     (#)       | ,___|     /____,   )  \      >   (C_)   <
+  /_____\        |    |         |   /         \     /----'    /___\____/___\
+ /_____/ \       OOOOOO        /____\          ooooo             /|    |\
+/         \     /      \      /      \        /     \           /        \
+                        Let's have a chat, AI buddies!
 """
 
 visible_colors = [color for color in ANSI_COLOR_NAMES.keys() if color not in ["black", "white", "red", "green"] and "grey" not in color]
@@ -31,7 +44,7 @@ class SimCLI:
     def __init__(self, sim: Sim):
         self.sim = sim
     
-    def launch(self, max_steps: int = None, interactive: bool = True):
+    def launch(self, max_steps: int = MAX_STEPS, interactive: bool = True):
         if not interactive and max_steps is None: 
             max_steps = MAX_STEPS
         

@@ -81,7 +81,7 @@ class Sim:
                 message_rows.append(message_row)
 
         with open(path, "w") as f:
-            json.dump(message_rows, f, indent=4)
+            json.dump(message_rows, f, indent=4, ensure_ascii=False)
 
 
 

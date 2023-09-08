@@ -6,7 +6,7 @@ from typing import List
 import re
 
 # Default config follows the OpenAI playground
-DEFAULT_TEMPERATURE = 0.1
+DEFAULT_TEMPERATURE = 0.7
 DEFAULT_MAX_TOKENS = 256 * 5
 DEFAULT_MODEL = "gpt-3.5-turbo"
 
